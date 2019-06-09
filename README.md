@@ -2,15 +2,9 @@
 Input the commands below:
 
 <step1>
-sh project.sh
+source project.sh
 
-<sample output>
-leoc@leoc-VirtualBox:~/unix/project$ source project.sh 
-	
-	
-	
-	
-	
+<sample output>	
 sample
 
 
@@ -142,10 +136,6 @@ for:
 檔名:project.sh
 第8份
 .............................................
-
-
-
-
 
 
 <note>
