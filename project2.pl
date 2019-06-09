@@ -53,23 +53,23 @@ while( $file[$filecounter] ){
 		$filecounter += 1;							
 		close(FILE);
 	}
-	else{										
-		@comparison=();								
-		$testcounter=0;								
+	else{										#action of the others files
+		@comparison=();								#init array
+		$testcounter=0;								#init the counter
 		$alike=0;
 		@test=<FILE>;
 		foreach my $file_line (@test) 
 		{	
-			if($file_line =~ /^\s*$/){					
+			if($file_line =~ /^\s*$/){					#remove \n in the file
 			}
-			elsif($file_line =~ /[\S\s]*\/\/[\S\s]*/){			
+			elsif($file_line =~ /[\S\s]*\/\/[\S\s]*/){			#remove annotation "//" in the file
 				if($file_line =~ /[\S\s][\S\s]*\/\/[\S\s]*/){
 					$file_line =~ s/\s*\/\/[\S\s]*//g;
 					push(@comparison,$file_line);
 					$testcounter++;
 				}
 			}
-			elsif($file_line =~ /[\S\s]*\/\*[\S\s]*\*\//){			
+			elsif($file_line =~ /[\S\s]*\/\*[\S\s]*\*\//){			#remove annotation "/**/" in the file
 				if($file_line =~ /[\S\s][\S\s]*\/\*[\S\s]*\*\//){
 					$file_line =~ s/\s*\/\*[\S\s]*\*\/\s*//g;
 					push(@comparison,$file_line);
@@ -77,13 +77,13 @@ while( $file[$filecounter] ){
 				}
 			}
 			elsif($file_line =~ /\{/){
-				if($file_line =~ /\S\S*\{/ or $file_line =~ /\{\S\S*/){	
+				if($file_line =~ /\S\S*\{/ or $file_line =~ /\{\S\S*/){	#remove single "{"
 					push(@comparison,$file_line);
 					$testcounter++;
 				}
 			}
 			elsif($file_line =~ /\}/){
-				if($file_line =~ /\S\S*\}/ or $file_line =~ /\}\S\S*/){	
+				if($file_line =~ /\S\S*\}/ or $file_line =~ /\}\S\S*/){	#remove single "}"
 					push(@comparison,$file_line);
 					$testcounter++;
 				}
@@ -96,7 +96,7 @@ while( $file[$filecounter] ){
 			}
 		}
 
-		for($i=0;$i<$testcounter;$i++){						
+		for($i=0;$i<$testcounter;$i++){						#first file compare to the others files
 			for($j=0;$j<$samplecounter;$j++){
 				if($comparison[$i] eq $standard[$j]){
 					$alike++;
