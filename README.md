@@ -5,6 +5,121 @@ Input the commands below:
 sh project.sh
 
 <sample output>
+leoc@leoc-VirtualBox:~/unix/project$ source project.sh 
+sample
+if:
+13
+while::
+2
+for:
+2
+檔名:1.cpp
+	int floor[20][20];
+	int direction = 0;
+	int position[2] = { 0,0 };
+	int choice;
+			int step;
+	bool pendown = false;
+第1份
+.............................................
+if:
+13
+while::
+2
+for:
+1
+檔名:2.cpp
+	int floors[20][20];
+	int dirs = 0;
+	int posi[2] = { 0,0 };
+	int choices;
+			int step;
+	bool pen = false;
+這份作業很可能抄襲！！
+可能性：2
+第2份
+.............................................
+if:
+12
+while::
+2
+for:
+0
+檔名:3.cpp
+	int r[20][20];
+	int  ejfiosjf = 0;
+	int psefsff[2] = { 0,0 };
+	int cseffsefsfe;
+			int step;
+	bool pseffes = false;
+第3份
+.............................................
+if:
+11
+while::
+2
+for:
+0
+檔名:4.cpp
+	int r[20][20];
+	int  ejfiosjf = 0;
+	int psefsff[2] = { 0,0 };
+	int cseffsefsfe;
+			int step;
+	bool pseffes = false;
+第4份
+.............................................
+if:
+13
+while::
+2
+for:
+2
+檔名:5.cpp
+	int f[20][20];
+	int dir = 0;
+	int pos[2] = { 0,0 };
+			int steps;
+	bool pd = false;
+這份作業很可能抄襲！！
+可能性：3
+第5份
+.............................................
+if:
+13
+while::
+2
+for:
+2
+檔名:6.cpp
+	int f[20][20];
+	int dir = 0;
+	int pos[2] = { 0,0 };
+			int steps;
+	bool pd = false;
+這份作業很可能抄襲！！
+可能性：3
+第6份
+.............................................
+if:
+4
+while::
+1
+for:
+0
+檔名:notcopy.cpp
+	int floor[20][20];
+第7份
+.............................................
+if:
+19
+while::
+11
+for:
+13
+檔名:project.sh
+第8份
+.............................................
 
 
 
