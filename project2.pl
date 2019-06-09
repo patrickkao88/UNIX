@@ -1,45 +1,47 @@
 #!/usr/bin/perl -w
 
 @file=glob "*.cpp";
-$samplecounter=0;
-$filecounter=0;
+$samplecounter=0;									#counting the lines in the first file
+$filecounter=0;										#counting the .cpp file in the folder
 while( $file[$filecounter] ){
-	open(FILE, $file[$filecounter]) or die "Can't open file: $!\n";
+	open(FILE, $file[$filecounter]) or die "Can't open file: $!\n";			#if there was error appeared during opening the file, it will print the message
+	
 	print "File's name:$file[$filecounter]\n\n";	
-	if($filecounter==0){	
+	if($filecounter==0){								#action of first file
 		@sample=<FILE>;
 		print "Standard code:\n@sample";
+		
 		foreach my $file_line (@sample) 
 		{	
-			if($file_line =~ /^\s*$/){					#for \n	
+			if($file_line =~ /^\s*$/){					#remove \n in the file	
 			}
-			elsif($file_line =~ /[\S\s]*\/\/[\S\s]*/){			#for //
+			elsif($file_line =~ /[\S\s]*\/\/[\S\s]*/){			#remove annotation "//" in the file
 				if($file_line =~ /[\S\s][\S\s]*\/\/[\S\s]*/){
 					$file_line =~ s/\s*\/\/[\S\s]*//g;
 					push(@standard,$file_line);
 					$samplecounter++;
 				}
 			}
-			elsif($file_line =~ /[\S\s]*\/\*[\S\s]*\*\//){			#for /**/
+			elsif($file_line =~ /[\S\s]*\/\*[\S\s]*\*\//){			#remove annotation "/**/" in the file
 				if($file_line =~ /[\S\s][\S\s]*\/\*[\S\s]*\*\//){
 					$file_line =~ s/\s*\/\*[\S\s]*\*\/\s*//g;
 					push(@standard,$file_line);
 					$samplecounter++;
 				}
 			}
-			elsif($file_line =~ /\{/){
+			elsif($file_line =~ /\{/){					#remove single "{"
 				if($file_line =~ /\S\S*\{/ or $file_line =~ /\{\S\S*/){
 					push(@standard,$file_line);
 					$samplecounter++;
 				}
 			}
-			elsif($file_line =~ /\}/){
+			elsif($file_line =~ /\}/){					#remove single "}"
 				if($file_line =~ /\S\S*\}/ or $file_line =~ /\}\S\S*/){
 					push(@standard,$file_line);
 					$samplecounter++;
 				}
 			}
-			else{
+			else{							
 				$file_line =~ s/\s*$//g;
 				$file_line =~ s/^\s*//g;
 				push(@standard,$file_line);
@@ -48,26 +50,26 @@ while( $file[$filecounter] ){
 		}
 		print "Total lines(Ignore annotation,tab,{,}):$samplecounter\n---------------------------------------------------------------------------------------------------------------\n";
 
-		$filecounter += 1;
+		$filecounter += 1;							
 		close(FILE);
 	}
-	else{
-		@comparison=();
-		$testcounter=0;
+	else{										
+		@comparison=();								
+		$testcounter=0;								
 		$alike=0;
 		@test=<FILE>;
 		foreach my $file_line (@test) 
 		{	
-			if($file_line =~ /^\s*$/){					#for \n	
+			if($file_line =~ /^\s*$/){					
 			}
-			elsif($file_line =~ /[\S\s]*\/\/[\S\s]*/){			#for //
+			elsif($file_line =~ /[\S\s]*\/\/[\S\s]*/){			
 				if($file_line =~ /[\S\s][\S\s]*\/\/[\S\s]*/){
 					$file_line =~ s/\s*\/\/[\S\s]*//g;
 					push(@comparison,$file_line);
 					$testcounter++;
 				}
 			}
-			elsif($file_line =~ /[\S\s]*\/\*[\S\s]*\*\//){			#for /**/
+			elsif($file_line =~ /[\S\s]*\/\*[\S\s]*\*\//){			
 				if($file_line =~ /[\S\s][\S\s]*\/\*[\S\s]*\*\//){
 					$file_line =~ s/\s*\/\*[\S\s]*\*\/\s*//g;
 					push(@comparison,$file_line);
@@ -75,13 +77,13 @@ while( $file[$filecounter] ){
 				}
 			}
 			elsif($file_line =~ /\{/){
-				if($file_line =~ /\S\S*\{/ or $file_line =~ /\{\S\S*/){
+				if($file_line =~ /\S\S*\{/ or $file_line =~ /\{\S\S*/){	
 					push(@comparison,$file_line);
 					$testcounter++;
 				}
 			}
 			elsif($file_line =~ /\}/){
-				if($file_line =~ /\S\S*\}/ or $file_line =~ /\}\S\S*/){
+				if($file_line =~ /\S\S*\}/ or $file_line =~ /\}\S\S*/){	
 					push(@comparison,$file_line);
 					$testcounter++;
 				}
@@ -94,7 +96,7 @@ while( $file[$filecounter] ){
 			}
 		}
 
-		for($i=0;$i<$testcounter;$i++){
+		for($i=0;$i<$testcounter;$i++){						
 			for($j=0;$j<$samplecounter;$j++){
 				if($comparison[$i] eq $standard[$j]){
 					$alike++;
